@@ -1,12 +1,12 @@
 
-function pokemonCard({pokeImg}) {
+function PokemonCard({id, pokeImg, onClick}) {
 
 
     return (
-        <div>
-
+        <div onClick={() => onClick(id)}>
+            <h1>card</h1>
         </div>
     )
 }
 
-export default pokemonCard
+export default PokemonCard

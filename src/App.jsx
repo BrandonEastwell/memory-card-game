@@ -1,6 +1,6 @@
 import { useState } from 'react'
-import './App.css'
 import Gameboard from "./components/gameboard.jsx";
+import Header from "./components/header.jsx";
 
 function App() {
   const [showGame, setShowGame] = useState(false);
@@ -11,11 +11,12 @@ function App() {
 
   return (
     <>
+      <Header />
       {!showGame &&
       <div>
         <button onClick={startGame}>Lets Play!</button>
       </div>}
-      { showGame && <Gameboard /> }
+      {showGame && <Gameboard />}
     </>
   )
 }
