@@ -1,13 +1,13 @@
 import PokemonCard from "./pokemon-card.jsx";
 import {useCallback, useEffect, useState} from "react";
 
-export default function Gameboard({itemCount, setScore, setShowGame}) {
+export default function Gameboard({cardCount, incrementScore, gameStates}) {
     const [cards, setCards] = useState(createPokeCards);
     const [clickedCards, setClickedCards] = useState([]);
 
     function createPokeCards() {
         const cards = [];
-        for (let i = 0; i < itemCount; i++) {
+        for (let i = 0; i < cardCount; i++) {
             let id = Math.floor(Math.random() * 400) + 1
             while (!cards.every(card => card.id !== id)) {
                 id = Math.floor(Math.random() * 400) + 1;
@@ -17,31 +17,41 @@ export default function Gameboard({itemCount, setScore, setShowGame}) {
         return cards;
     }
 
-    function gameOver() {
-        console.log("Game Over!");
-        setScore(0);
+    function gameLost() {
         setClickedCards([]);
-        setShowGame(false);
+        gameStates.setShowGame(false);
+        gameStates.setGameLost(true);
+    }
+
+    function gameWon() {
+        setClickedCards([]);
+        gameStates.setGameWon(true);
+        gameStates.setShowGame(false);
+        setCards(createPokeCards);
     }
 
     const handleCardClick = useCallback((id) => {
-        console.log("Clicked cards:", clickedCards);
         if (clickedCards.includes(id)) {
-            gameOver();
+            gameLost();
         } else {
             setClickedCards(prevState => [...prevState, id]);
-            setScore(prevScore => prevScore + 1);
+            incrementScore();
         }
-    }, [clickedCards, setScore]);
+    }, [clickedCards, incrementScore]);
 
     useEffect(() => {
-        setCards(prevData => shuffleCards([...prevData]));
+        console.log("Clicked cards:", clickedCards);
+        if (clickedCards.length === cards.length && cards.length > 0) {
+            gameWon();
+        } else {
+            setCards(prevData => shuffleCards([...prevData]));
+        }
     }, [clickedCards]);
 
     useEffect(() => {
         setCards(createPokeCards);
-        setScore(0);
-    }, [itemCount]);
+        setClickedCards([]);
+    }, [cardCount]);
 
     return (
         <div className='gameboard'>
