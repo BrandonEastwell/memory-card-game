@@ -3,7 +3,9 @@ function Scoreboard() {
 
 
     return (
-        <div>
+        <div className='scoreboard'>
+            <p>SCORE: </p>
+            <p>HIGHEST SCORE: </p>
         </div>
     )
 }

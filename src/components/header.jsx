@@ -4,10 +4,10 @@ function Header() {
 
 
     return (
-        <div>
-            <h1>Card Game</h1>
+        <header>
+            <h1>Memory Game with Pokemon</h1>
             <Scoreboard />
-        </div>
+        </header>
     )
 }
 

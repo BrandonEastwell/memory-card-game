@@ -5,12 +5,14 @@ export default function Gameboard({itemCount = 10}) {
     const [cards, setCards] = useState(createPokeCards);
     const [clickedCards, setClickedCards] = useState([]);
 
-    console.log(clickedCards);
-
     function createPokeCards() {
         const cards = [];
         for (let i = 0; i < itemCount; i++) {
-            cards.push(<PokemonCard key={i} id={i} onClick={cardClicked} />)
+            let id = Math.floor(Math.random() * 400) + 1
+            while (!cards.every(card => card.props.id !== id)) {
+                id = Math.floor(Math.random() * 400) + 1;
+            }
+            cards.push(<PokemonCard key={i} id={id} onClick={cardClicked} />)
         }
         return cards;
     }
