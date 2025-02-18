@@ -24,8 +24,9 @@ a:hover {
 
 body {
   color: rgba(255, 255, 255, 0.82);
-  background-color: #232323;
+  background-color: #18181c;
   margin: 0;
+  padding-top: 50px;
   display: flex;
   justify-content: center;
   min-width: 320px;
@@ -33,11 +34,12 @@ body {
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 2.8em;
   line-height: 1.1;
   margin-bottom: 0.4em;
   margin-top: 0.4em;
   text-transform: uppercase;
+  align-self: start;
 }
 
 button {
@@ -60,18 +62,18 @@ button:focus-visible {
 }
 
 #root {
-  max-width: 1280px;
+  max-width: 1200px;
+  padding: 20px;
   text-align: center;
 }
 
 header {
   display: flex;
   flex-direction: column;
-  place-items: center;
 }
 
 .poke-logo {
-  max-width: 350px;
+  max-width: 385px;
 }
 
 .poke-loading {
@@ -90,14 +92,18 @@ header {
 }
 
 .poke-card {
-  background-color: #1a1a1a;
+  background-color: #1b1b1f;
   text-transform: capitalize;
-  min-width: 180px;
-  min-height: 250px;
+  width: 180px;
+  height: 250px;
 }
 
 .card-image {
   width: 100%;
+}
+
+p {
+  margin: 0;
 }
 
 .scoreboard {
@@ -105,4 +111,9 @@ header {
   flex-wrap: wrap;
   gap: 30px;
   text-transform: uppercase;
+  place-items: center;
+}
+
+.nes-select {
+  max-width: 240px;
 }

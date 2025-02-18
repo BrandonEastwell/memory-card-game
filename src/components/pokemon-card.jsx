@@ -25,7 +25,7 @@ function PokemonCard({id, onClick}) {
     )
 
     return (
-        <Tilt tiltReverse={true} glareEnable={true} glareMaxOpacity={0.1}>
+        <Tilt tiltReverse={true} reset={true}>
             <div className="poke-card" onClick={() => onClick(id)}>
                 <img className="card-image" src={data.sprites.front_default} alt={data.name}/>
                 <p>{data.name}</p>
