@@ -4,6 +4,7 @@ import Header from "./components/header.jsx";
 
 function App() {
   const [showGame, setShowGame] = useState(false);
+  const [score, setScore] = useState(0);
 
   function startGame() {
     setShowGame(true);
@@ -11,12 +12,12 @@ function App() {
 
   return (
     <>
-      <Header />
+      <Header score={score} />
       {!showGame &&
       <div>
         <button className="nes-btn is-primary" onClick={startGame}>Lets Play!</button>
       </div>}
-      {showGame && <Gameboard />}
+      {showGame && <Gameboard setScore={setScore} setShowGame={setShowGame} />}
     </>
   )
 }

@@ -74,6 +74,10 @@ header {
   max-width: 350px;
 }
 
+.poke-loading {
+  max-width: 64px;
+}
+
 .gameboard {
   display: flex;
   flex-direction: row;

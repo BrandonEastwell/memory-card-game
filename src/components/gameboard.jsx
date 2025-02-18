@@ -1,7 +1,7 @@
 import PokemonCard from "./pokemon-card.jsx";
-import {useState} from "react";
+import {useCallback, useEffect, useState} from "react";
 
-export default function Gameboard({itemCount = 10}) {
+export default function Gameboard({itemCount = 10, setScore, setShowGame}) {
     const [cards, setCards] = useState(createPokeCards);
     const [clickedCards, setClickedCards] = useState([]);
 
@@ -9,29 +9,40 @@ export default function Gameboard({itemCount = 10}) {
         const cards = [];
         for (let i = 0; i < itemCount; i++) {
             let id = Math.floor(Math.random() * 400) + 1
-            while (!cards.every(card => card.props.id !== id)) {
+            while (!cards.every(card => card.id !== id)) {
                 id = Math.floor(Math.random() * 400) + 1;
             }
-            cards.push(<PokemonCard key={i} id={id} onClick={cardClicked} />)
+            cards.push({ id });
         }
         return cards;
     }
 
-    function cardClicked(id) {
-        setClickedCards((prevState) => {
-            if (prevState.includes(id)) {
-                console.log("Game Over! Restarting...");
-                return [];
-            } else {
-                setCards(shuffleCards(cards));
-                return [...prevState, id];
-            }
-        })
-    }
+    const handleCardClick = useCallback((id) => {
+        console.log("Clicked cards:", clickedCards);
+        if (clickedCards.includes(id)) {
+            console.log("Game Over! Restarting...");
+            setScore(0);
+            setClickedCards([]);
+            setShowGame(false);
+        } else {
+            setClickedCards(prevState => [...prevState, id]);
+            setScore(prevScore => prevScore + 1);
+        }
+    }, [clickedCards, setScore]);
+
+    useEffect(() => {
+        setCards(prevData => shuffleCards([...prevData]));
+    }, [clickedCards]);
 
     return (
         <div className='gameboard'>
-            {cards}
+            {cards.map(card => (
+                <PokemonCard
+                    key={card.id}
+                    id={card.id}
+                    onClick={handleCardClick}
+                />
+            ))}
         </div>
     )
 }

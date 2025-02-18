@@ -1,10 +1,10 @@
 
-function Scoreboard() {
+function Scoreboard({score}) {
 
 
     return (
         <div className='scoreboard'>
-            <p>SCORE: </p>
+            <p>SCORE: {score}</p>
             <p>HIGHEST SCORE: </p>
         </div>
     )

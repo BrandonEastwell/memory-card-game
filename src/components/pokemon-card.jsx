@@ -17,7 +17,11 @@ function PokemonCard({id, onClick}) {
         fetchPokemon();
     }, []);
 
-    if (!data) return <p>Loading...</p>
+    if (!data) return (
+        <div className="poke-card">
+            <p>loading...</p>
+        </div>
+    )
 
     return (
         <div className="poke-card" onClick={() => onClick(id)}>
