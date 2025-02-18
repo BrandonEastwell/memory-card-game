@@ -20,9 +20,9 @@ function PokemonCard({id, onClick}) {
     if (!data) return <p>Loading...</p>
 
     return (
-        <div onClick={() => onClick(id)}>
-            <img src={data.sprites.front_default} alt={data.name}/>
-            <h3>{data.name}</h3>
+        <div className="poke-card" onClick={() => onClick(id)}>
+            <img className="card-image" src={data.sprites.front_default} alt={data.name}/>
+            <p>{data.name}</p>
         </div>
     )
 }
