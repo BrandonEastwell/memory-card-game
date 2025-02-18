@@ -14,7 +14,7 @@ function App() {
       <Header />
       {!showGame &&
       <div>
-        <button onClick={startGame}>Lets Play!</button>
+        <button className="nes-btn is-primary" onClick={startGame}>Lets Play!</button>
       </div>}
       {showGame && <Gameboard />}
     </>

@@ -82,6 +82,7 @@ header {
   grid-gap: 15px;
   max-width: 100vw;
   margin-top: 40px;
+  transition: 0.5s;
 }
 
 .poke-card {
