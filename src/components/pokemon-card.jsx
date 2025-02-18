@@ -1,4 +1,5 @@
 import {useEffect, useState} from "react";
+import Tilt from 'react-parallax-tilt';
 
 function PokemonCard({id, onClick}) {
     const [data, setData] = useState(null);
@@ -24,10 +25,12 @@ function PokemonCard({id, onClick}) {
     )
 
     return (
-        <div className="poke-card" onClick={() => onClick(id)}>
-            <img className="card-image" src={data.sprites.front_default} alt={data.name}/>
-            <p>{data.name}</p>
-        </div>
+        <Tilt tiltReverse={true} glareEnable={true} glareMaxOpacity={0.1}>
+            <div className="poke-card" onClick={() => onClick(id)}>
+                <img className="card-image" src={data.sprites.front_default} alt={data.name}/>
+                <p>{data.name}</p>
+            </div>
+        </Tilt>
     )
 }
 
